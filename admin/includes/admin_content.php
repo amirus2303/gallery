@@ -9,9 +9,17 @@
             </h1>
 
             <?php
-            $user_found = User::find_user_by_id(2);
-            echo $user_found['username']. '<br />';
-
+            $user_found = User::find_all_users();
+            echo '<h3>All users</h3>';
+            foreach ($user_found as $user) {
+                echo $user->username.'<br />';
+            }
+            ?>
+            <?php
+            echo '<h3> Find one user</h3>';
+            $only_one_use = User::find_user_by_id(1);
+            echo $only_one_use->username.'<br />';
+            
             ?>
             <ol class="breadcrumb">
                 <li>
