@@ -9,17 +9,36 @@
             </h1>
 
             <?php
-            $user_found = User::find_all_users();
-            echo '<h3>All users</h3>';
-            foreach ($user_found as $user) {
-                echo $user->username.'<br />';
+            $photo_found = Photo::find_all();
+            echo '<h3>All Photos</h3>';
+            foreach ($photo_found as $photo) {
+                echo $photo->title.'<br />';
             }
             ?>
-            <?php
-            echo '<h3> Find one user</h3>';
-            $only_one_use = User::find_user_by_id(1);
-            echo $only_one_use->username.'<br />';
-            
+
+            <?php 
+            echo "<h2>Add user </h2>";
+            $photo = new Photo();
+            $photo->title = "Photo1";
+            $photo->description = "My first Photo";
+            $photo->filename = "photo1.jpg";
+            $photo->type = "JPG";
+            $photo->size = "20000";
+
+            $photo->save();
+            ?>
+
+            <?php /*
+            echo "<h2>Update user </h2>";
+            $user = User::find_by_id(2);
+            echo $user->username.'<br />';
+            $user->username = "STT";
+            $user->save();*/
+            ?>
+
+            <?php /*
+            $user = User::find_user_by_id(7);
+            $user->delete();*/
             ?>
             <ol class="breadcrumb">
                 <li>

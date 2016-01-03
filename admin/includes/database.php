@@ -6,7 +6,6 @@ class Database{
 		$this->open_db_connexion();
 	}
 
-
 	public function open_db_connexion(){
 		//$this->connexion = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 		$this->connexion = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -33,6 +32,10 @@ class Database{
 	public function escape_string($query){
 		$escape_string = $this->connexion->real_escape_string($query);
 		return $escape_string;
+	}
+
+	public function the_insert_id(){
+		return mysqli_insert_id($this->connexion);
 	}
 }
 
