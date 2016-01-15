@@ -222,3 +222,13 @@ ul.alert-dropdown {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    vertical-align: middle;
+}
+
+.col-xs-12{
+    background-color: white;
+}

@@ -1,4 +1,9 @@
 <?php include("includes/header.php"); ?>
+<?php
+if (!$session->is_signed_in()){
+    redirect('login.php');
+}
+?>
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -19,6 +24,50 @@
                     USERS
                     <small>Subheading</small>
                 </h1>
+                <?php 
+                if(!empty($session->message)){
+                    echo '<div class="alert alert-success">' . $session->message . '</div>';
+                }
+                ?>
+
+                <a href="add_user.php" class="btn btn-primary">Add user</a>
+                <div class="col-xs-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Photo</th>
+                                <th>Username</th>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php $user_found = User::find_all(); ?>
+                            <?php foreach ($user_found as $user) : ?>
+                               <tr>
+                                    <td><?php echo $user->id; ?></td>
+                                    <td>
+                                        <img class="img-thumbnail img-responsive thumb-user" src ="<?php echo $user->image_path_and_placeholder(); ?>"/>
+                                    </td>
+                                    <td>
+                                        <?php echo $user->username; ?>
+                                        <div class="action_links">
+                                            <a href="delete_user.php?id=<?php echo $user->id;?>">Delete</a>
+                                            <a href="edit_user.php?id=<?php echo $user->id;?>">Edit</a>
+                                        </div>
+                                    </td>
+                                    <td><?php echo $user->first_name; ?></td>
+                                    <td><?php echo $user->last_name; ?></td>
+                                </tr> 
+                            <?php endforeach; ?>
+                            
+                        </tbody>
+                    </table>
+
+                    
+                </div>
                 <ol class="breadcrumb">
                     <li>
                         <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
